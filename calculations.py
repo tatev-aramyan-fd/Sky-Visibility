@@ -65,3 +65,16 @@ def calc_star_projection(earth, stars, projection, t):
     stars['x'], stars['y'] = projection(star_positions)
     # print(stars)
     return stars
+
+
+def get_stars_locations():
+    # hipparcos dataset contains star location data
+    with load.open(hipparcos.URL) as f:
+        stars = hipparcos.load_dataframe(f)
+    return stars
+
+
+def find_earth_loc():
+    eph = load('de421.bsp')
+    # sun = eph['sun']
+    return eph['earth']
