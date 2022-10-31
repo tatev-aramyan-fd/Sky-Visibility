@@ -13,21 +13,7 @@ from skyfield.data import hipparcos
 from skyfield.projections import build_stereographic_projection
 
 
-# def get_current_location(dt):
-#     location = 'Yerevan, Armenia'
-#     # location = input('Enter your location name')
-#     when = '2023-01-01 00:00'
-#     # convert date string into datetime object
-#     # get latitude and longitude of our location
-#     locator = Nominatim(user_agent='myGeocoder')
-#     location = locator.geocode(location)
-#     lat, long = location.latitude, location.longitude
-#     return long, lat
-
-
 def convert_time_to_utc(dt, long, lat):
-    # timezone_str = tzwhere.tzwhere().tzNameAt(40.1776245, 44.5126174)
-
     timezone_str = tzwhere.tzwhere().tzNameAt(lat, long)
     local = timezone(timezone_str)
     local_dt = local.localize(dt, is_dst=None)
@@ -40,6 +26,7 @@ def define_observe_time_from_utc(utc_dt):
     ts = load.timescale()
     t = ts.from_datetime(utc_dt)
     return t
+
 
 def define_sky_obsrve_point(long, lat,t):
     # define an observer using the world geodetic system data
