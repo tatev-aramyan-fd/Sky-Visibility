@@ -33,7 +33,7 @@ def convert_time_to_utc(dt, long, lat):
     local_dt = local.localize(dt, is_dst=None)
     utc_dt = local_dt.astimezone(utc)
     print(timezone_str,long,lat)
-    return utc_dt
+    return utc_dt,timezone_str
 
 
 def define_observe_time_from_utc(utc_dt):
@@ -55,7 +55,6 @@ def define_sky_obsrve_point(long, lat,t):
 def get_projection_our_center(earth, t, center_object):
     center = earth.at(t).observe(center_object)
     projection = build_stereographic_projection(center)
-    # field_of_view_degrees = 180.0
     return projection
 
 
@@ -63,18 +62,11 @@ def calc_star_projection(earth, stars, projection, t):
     # calculate star positions and project them onto a plain space
     star_positions = earth.at(t).observe(Star.from_dataframe(stars))
     stars['x'], stars['y'] = projection(star_positions)
-    # print(stars)
+
     return stars
 
 
 def get_stars_locations():
-    # hipparcos dataset contains star location data
     with load.open(hipparcos.URL) as f:
         stars = hipparcos.load_dataframe(f)
     return stars
-
-
-def find_earth_loc():
-    eph = load('de421.bsp')
-    # sun = eph['sun']
-    return eph['earth']
