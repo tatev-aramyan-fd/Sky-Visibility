@@ -39,7 +39,6 @@ def is_valid_long(long: float) -> bool:
         return True
     else:
         raise ValueError("Invalid longitude!!!") from None
-    # return False
 
 
 def define_observe_time_from_utc(utc_dt):
@@ -48,12 +47,6 @@ def define_observe_time_from_utc(utc_dt):
     print((type(t)))
     return t
 
-
-def define_sky_obsrve_point(long, lat, t):
-    # define an observer using the world geodetic system data
-    observer = wgs84.latlon(latitude_degrees=lat, longitude_degrees=long).at(t)
-    # define the position in the sky where we will be looking
-    # position = observer.from_altaz(alt_degrees=90, az_degrees=0)
 
 def is_valid_lat(lat: float) -> bool:
     if -90 <= lat <= 90:
@@ -82,7 +75,6 @@ def input_lonlat():
 def define_sky_obsrve_point(long, lat,t):
     # define an observer using the world geodetic system data
     observer = wgs84.latlon(latitude_degrees=lat, longitude_degrees=long).at(t)
-
     # center the observation point in the middle of the sky
     ra, dec, distance = observer.radec()
     center_object = Star(ra=ra, dec=dec)
