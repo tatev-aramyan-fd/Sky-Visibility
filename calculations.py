@@ -1,16 +1,5 @@
-<<<<<<< HEAD
-from datetime import datetime
 from tzwhere import tzwhere
 from pytz import timezone, utc
-# import numpy as np
-# import matplotlib.pyplot as plt
-# from matplotlib.collections import LineCollection
-# from matplotlib.patches import Circle, Rectangle
-=======
-from tzwhere import tzwhere
-from pytz import timezone, utc
->>>>>>> chart_drawing
-
 from skyfield.api import Star, load, wgs84
 from skyfield.data import hipparcos
 from skyfield.projections import build_stereographic_projection
@@ -60,13 +49,12 @@ def define_observe_time_from_utc(utc_dt):
     return t
 
 
-<<<<<<< HEAD
 def define_sky_obsrve_point(long, lat, t):
     # define an observer using the world geodetic system data
     observer = wgs84.latlon(latitude_degrees=lat, longitude_degrees=long).at(t)
     # define the position in the sky where we will be looking
     # position = observer.from_altaz(alt_degrees=90, az_degrees=0)
-=======
+
 def is_valid_lat(lat: float) -> bool:
     if -90 <= lat <= 90:
         return True
@@ -94,7 +82,7 @@ def input_lonlat():
 def define_sky_obsrve_point(long, lat,t):
     # define an observer using the world geodetic system data
     observer = wgs84.latlon(latitude_degrees=lat, longitude_degrees=long).at(t)
->>>>>>> chart_drawing
+
     # center the observation point in the middle of the sky
     ra, dec, distance = observer.radec()
     center_object = Star(ra=ra, dec=dec)
