@@ -35,4 +35,21 @@ def draw(ax, stars):
                zorder=2)
 
 
+def print_on_plain(stars, t, projection, eph,title):
+    chart_size = 10
+    fig, ax = plt.subplots(figsize=(chart_size, chart_size))
+    draw(ax, stars)
+    draw_planets_sun_moon("venus", ax, t, projection, eph)
+    draw_planets_sun_moon("mars", ax, t, projection, eph)
+    draw_planets_sun_moon("mercury", ax, t, projection, eph)
+    draw_planets_sun_moon("sun", ax, t, projection, eph)
+    draw_planets_sun_moon("moon", ax, t, projection, eph)
+    title = title[title.index('/')+1:]
+    plt.title(f"★STARRY SKY★\n{title}", fontsize=25)
+    ax.set_xlim(-1, 1)
+    ax.set_ylim(-1, 1)
+    plt.axis('off')
+    fig.savefig('sky.png')
+    plt.show()
+
 
