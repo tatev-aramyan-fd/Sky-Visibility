@@ -1,12 +1,5 @@
-from datetime import datetime
-from geopy import Nominatim
 from tzwhere import tzwhere
 from pytz import timezone, utc
-
-# import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.collections import LineCollection
-from matplotlib.patches import Circle, Rectangle
 
 from skyfield.api import Star, load, wgs84
 from skyfield.data import hipparcos
@@ -40,7 +33,6 @@ def is_valid_long(long: float) -> bool:
         return True
     else:
         raise ValueError("Invalid longitude!!!") from None
-    # return False
 
 
 def input_lonlat():
@@ -56,8 +48,6 @@ def input_lonlat():
 def define_sky_obsrve_point(long, lat,t):
     # define an observer using the world geodetic system data
     observer = wgs84.latlon(latitude_degrees=lat, longitude_degrees=long).at(t)
-    # define the position in the sky where we will be looking
-    position = observer.from_altaz(alt_degrees=90, az_degrees=0)
     # center the observation point in the middle of the sky
     ra, dec, distance = observer.radec()
     center_object = Star(ra=ra, dec=dec)
