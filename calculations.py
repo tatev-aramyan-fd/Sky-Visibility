@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from datetime import datetime
 from tzwhere import tzwhere
 from pytz import timezone, utc
@@ -5,6 +6,10 @@ from pytz import timezone, utc
 # import matplotlib.pyplot as plt
 # from matplotlib.collections import LineCollection
 # from matplotlib.patches import Circle, Rectangle
+=======
+from tzwhere import tzwhere
+from pytz import timezone, utc
+>>>>>>> chart_drawing
 
 from skyfield.api import Star, load, wgs84
 from skyfield.data import hipparcos
@@ -55,11 +60,41 @@ def define_observe_time_from_utc(utc_dt):
     return t
 
 
+<<<<<<< HEAD
 def define_sky_obsrve_point(long, lat, t):
     # define an observer using the world geodetic system data
     observer = wgs84.latlon(latitude_degrees=lat, longitude_degrees=long).at(t)
     # define the position in the sky where we will be looking
     # position = observer.from_altaz(alt_degrees=90, az_degrees=0)
+=======
+def is_valid_lat(lat: float) -> bool:
+    if -90 <= lat <= 90:
+        return True
+    else:
+        raise ValueError("Invalid latitude!!!") from None
+
+
+def is_valid_long(long: float) -> bool:
+    if -180 <= long <= 180:
+        return True
+    else:
+        raise ValueError("Invalid longitude!!!") from None
+
+
+def input_lonlat():
+    try:
+        lat = float(input("Latitude: "))
+        long = float(input("Longitude: "))
+    except ValueError:
+        raise ValueError("Enter Only Float Numbers!!!") from None
+    if is_valid_lat(lat) and is_valid_long(long):
+        return lat, long
+
+
+def define_sky_obsrve_point(long, lat,t):
+    # define an observer using the world geodetic system data
+    observer = wgs84.latlon(latitude_degrees=lat, longitude_degrees=long).at(t)
+>>>>>>> chart_drawing
     # center the observation point in the middle of the sky
     ra, dec, distance = observer.radec()
     center_object = Star(ra=ra, dec=dec)
