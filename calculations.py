@@ -44,32 +44,7 @@ def is_valid_long(long: float) -> bool:
 def define_observe_time_from_utc(utc_dt):
     ts = load.timescale()
     t = ts.from_datetime(utc_dt)
-    print((type(t)))
     return t
-
-
-def is_valid_lat(lat: float) -> bool:
-    if -90 <= lat <= 90:
-        return True
-    else:
-        raise ValueError("Invalid latitude!!!") from None
-
-
-def is_valid_long(long: float) -> bool:
-    if -180 <= long <= 180:
-        return True
-    else:
-        raise ValueError("Invalid longitude!!!") from None
-
-
-def input_lonlat():
-    try:
-        lat = float(input("Latitude: "))
-        long = float(input("Longitude: "))
-    except ValueError:
-        raise ValueError("Enter Only Float Numbers!!!") from None
-    if is_valid_lat(lat) and is_valid_long(long):
-        return lat, long
 
 
 def define_sky_obsrve_point(long, lat,t):
