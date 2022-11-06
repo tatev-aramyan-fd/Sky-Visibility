@@ -1,0 +1,7 @@
+astropy_healpix
+astropy
+matplotlib
+numpy
+skyfield
+tzwhere
+pytz

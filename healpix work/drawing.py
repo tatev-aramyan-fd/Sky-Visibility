@@ -25,5 +25,5 @@ def draw_sphere(ras: list, decs: list, ra:float, dec: float):
     ax.yaxis.label.set_fontsize(20)
     ax.grid(True)
     plt.axis('on')
-    fig.savefig('sphere.png')
+    fig.savefig('sphere1.png')
     plt.show()
