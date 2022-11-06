@@ -2,13 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def draw_sphere(ras: list, decs: list, la, lo):
+def draw_sphere(ras: list, decs: list, ra:float, dec: float):
 
     fig = plt.figure(figsize=(20, 10))
     ax = fig.add_subplot(111, projection='mollweide')
     ax.scatter(np.radians(ras), np.radians(decs),c='#000080')
-    # ax.scatter(np.radians(la), np.radians(lo), c='#000080')
-    ax.text(np.radians(la), np.radians(lo),s='*',c='red')
+    ax.text(np.radians(ra), np.radians(dec), s='*', c='red')
     xtick_labels = ["$-150^{\circ}$", "$-120^{\circ}$", "$-90^{\circ}$",
                     "$-60^{\circ}$", "$-30^{\circ}$", "$-0^{\circ}$",
                     "$30^{\circ}$", "$60^{\circ}$", "$90^{\circ}$",
@@ -26,4 +25,5 @@ def draw_sphere(ras: list, decs: list, la, lo):
     ax.yaxis.label.set_fontsize(20)
     ax.grid(True)
     plt.axis('on')
+    fig.savefig('sphere.png')
     plt.show()
