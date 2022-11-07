@@ -10,7 +10,7 @@ def input_lonlat():
     except ValueError:
         raise ValueError("Enter Only Float Numbers!!!") from None
     if is_valid_lat(lat) and is_valid_long(long):
-        return lat, long
+        return long, lat
 
 
 def is_valid_lat(lat: float) -> bool:
@@ -67,8 +67,3 @@ def get_radec_from_my_loc(long: float, lat: float, t) -> tuple:
     observer = wgs84.latlon(latitude_degrees=lat, longitude_degrees=long).at(t)
     ra, dec, distance = observer.radec()
     return ra._degrees, dec._degrees
-
-
-
-
-

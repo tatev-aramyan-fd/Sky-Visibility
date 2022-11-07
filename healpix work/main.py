@@ -9,8 +9,8 @@ import calculations as clc
 def run():
     hp = HEALPix(nside=64, order='nested', frame=Galactic())
     dt = datetime.now()
-    lat, long = 40.177200, 44.503490  # Yerevan coords
-    # lat, long = clc.input_lonlat()
+    # long, lat = 44.503490, 40.177200  # Yerevan coords
+    long, lat = clc.input_lonlat()
     utc_dt = clc.convert_time_to_utc(dt, long, lat)
     t = clc.define_observe_time_from_utc(utc_dt)
     my_ra, my_dec = clc.get_radec_from_my_loc(long, lat, t)
